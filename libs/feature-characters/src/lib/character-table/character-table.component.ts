@@ -18,7 +18,7 @@ export class CharacterTableComponent implements OnInit {
   allColumns = [
     { field: 'firstName', header: 'First Name', width: '10rem' },
     { field: 'lastName', header: 'Last Name', width: '10rem' },
-    { field: 'age', header: 'Age', width: '6rem' },
+    { field: 'age', header: 'Age', width: '7rem' },
     { field: 'email', header: 'Email', width: '18rem' },
     { field: 'quote', header: 'Quote' },
   ];
