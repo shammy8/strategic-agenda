@@ -100,7 +100,7 @@ export class CharacterTableComponent implements OnInit, OnDestroy {
   }
 
   onDelete() {
-    console.log(this.selectedCharacters[0]);
+    this.characterService.deleteCharacter(this.selectedCharacters);
   }
 
   ngOnDestroy() {

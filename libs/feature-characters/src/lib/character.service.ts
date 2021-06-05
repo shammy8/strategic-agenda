@@ -87,4 +87,15 @@ export class CharacterService {
     });
     this.charactersSubject$.next(this.characters);
   }
+
+  deleteCharacter(characters: Character[]) {
+    const idsOfCharactersToDelete = characters.map((character) => character.id);
+    this.characters = this.characters.filter((character) => {
+      if (idsOfCharactersToDelete.includes(character.id)) {
+        return false;
+      }
+      return true;
+    });
+    this.charactersSubject$.next(this.characters);
+  }
 }
