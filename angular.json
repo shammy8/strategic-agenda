@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "translation-projex",
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "projects": {
+    "translation-projex": {
+      "projectType": "application",
+      "root": "apps/translation-projex",
+      "sourceRoot": "apps/translation-projex/src",
+      "prefix": "strategic-agenda",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/translation-projex",
+            "index": "apps/translation-projex/src/index.html",
+            "main": "apps/translation-projex/src/main.ts",
+            "polyfills": "apps/translation-projex/src/polyfills.ts",
+            "tsConfig": "apps/translation-projex/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/translation-projex/src/favicon.ico",
+              "apps/translation-projex/src/assets"
+            ],
+            "styles": ["apps/translation-projex/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/translation-projex/src/environments/environment.ts",
+                  "with": "apps/translation-projex/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "translation-projex:build:production"
+            },
+            "development": {
+              "browserTarget": "translation-projex:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "translation-projex:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/translation-projex/src/**/*.ts",
+              "apps/translation-projex/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/translation-projex"],
+          "options": {
+            "jestConfig": "apps/translation-projex/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "translation-projex-e2e": {
+      "root": "apps/translation-projex-e2e",
+      "sourceRoot": "apps/translation-projex-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/translation-projex-e2e/cypress.json",
+            "tsConfig": "apps/translation-projex-e2e/tsconfig.e2e.json",
+            "devServerTarget": "translation-projex:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "translation-projex:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/translation-projex-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  }
+}
