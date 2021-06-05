@@ -22,6 +22,14 @@ export class CharacterService {
       quote: 'britta',
       age: 27,
     },
+    {
+      id: 3,
+      firstName: 'Abed',
+      lastName: 'Nadir',
+      email: 'cool@hotmail.com',
+      quote: 'Cool cool cool',
+      age: 27,
+    },
   ];
 
   constructor() {}

@@ -1,1 +1,65 @@
-<p>character-table works!</p>
+<p-table
+  #dt
+  [value]="characters"
+  [columns]="cols"
+  sortMode="multiple"
+  [globalFilterFields]="['firstName', 'lastName', 'age', 'email', 'quote']"
+  selectionMode="multiple"
+  [(selection)]="selectedCharacters"
+  [resizableColumns]="true"
+  [reorderableColumns]="true"
+>
+  <ng-template pTemplate="caption">
+    <div class="p-d-flex">
+      <button
+        type="button"
+        pButton
+        icon="pi pi-file-o"
+        iconPos="left"
+        label="CSV"
+        (click)="dt.exportCSV()"
+      ></button>
+      <span class="p-input-icon-left p-ml-auto">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          [(ngModel)]="filter"
+          (ngModelChange)="filterGlobal($event)"
+          placeholder="Search keyword"
+        />
+      </span>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th style="width: 2.25em">
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+      <th
+        *ngFor="let col of columns"
+        [pSortableColumn]="col.field"
+        pResizableColumn
+        pReorderableColumn
+      >
+        {{ col.header }}
+        <p-sortIcon [field]="col.field"></p-sortIcon>
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template
+    pTemplate="body"
+    let-character
+    let-columns="columns"
+    let-rowIndex="rowIndex"
+  >
+    <tr [pSelectableRow]="character" [pSelectableRowIndex]="rowIndex">
+      <td>
+        <p-tableCheckbox [value]="character"></p-tableCheckbox>
+      </td>
+      <td *ngFor="let col of columns">{{ character[col.field] }}</td>
+    </tr>
+  </ng-template>
+</p-table>
