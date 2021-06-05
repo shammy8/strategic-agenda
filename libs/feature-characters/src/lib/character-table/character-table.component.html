@@ -52,7 +52,10 @@
       <th style="width: 2.25em">
         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
       </th>
-      <th>ID</th>
+      <th pResizableColumn pSortableColumn="id">
+        ID
+        <p-sortIcon field="id"></p-sortIcon>
+      </th>
       <th
         *ngFor="let col of columns"
         [pSortableColumn]="col.field"
@@ -72,10 +75,10 @@
     let-rowIndex="rowIndex"
   >
     <tr [pSelectableRow]="character" [pSelectableRowIndex]="rowIndex">
-      <td>{{ character.id }}</td>
       <td>
         <p-tableCheckbox [value]="character"></p-tableCheckbox>
       </td>
+      <td>{{ character.id }}</td>
       <td *ngFor="let col of columns">{{ character[col.field] }}</td>
     </tr>
   </ng-template>
