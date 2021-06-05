@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Character } from './character.model';
 
 @Injectable({
@@ -65,7 +66,8 @@ export class CharacterService {
     },
   ];
 
-  constructor() {}
+  private charactersSubject$ = new BehaviorSubject(this.characters);
+  charactersObservable$ = this.charactersSubject$.asObservable();
 
   getAllCharacters(): Character[] {
     return this.characters;
@@ -73,6 +75,7 @@ export class CharacterService {
 
   addCharacter(newCharacter: Character) {
     this.characters = [...this.characters, newCharacter];
+    this.charactersSubject$.next(this.characters);
   }
 
   updateCharacter(editedCharacter: Character) {
@@ -82,5 +85,6 @@ export class CharacterService {
       }
       return character;
     });
+    this.charactersSubject$.next(this.characters);
   }
 }

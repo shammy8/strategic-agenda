@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
 import { CharacterDetailDialogComponent } from '../character-detail-dialog/character-detail-dialog.component';
@@ -14,6 +14,9 @@ import { CharacterService } from '../character.service';
 })
 export class CharacterTableComponent implements OnInit, OnDestroy {
   filter = '';
+
+  characters$: Observable<Character[]> = this.characterService
+    .charactersObservable$;
 
   characters: Character[] = [];
   selectedCharacters: Character[] = [];
