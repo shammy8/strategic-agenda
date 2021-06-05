@@ -62,14 +62,21 @@ export class CharacterTableComponent implements OnInit {
 
   onAdd() {
     this.dialogService.open(CharacterDetailDialogComponent, {
-      header: 'Add',
+      header: 'Add new character',
       width: '70%',
-      data: 'hello',
+      data: { isAdding: true },
     });
   }
 
   onEdit() {
-    console.log(this.selectedCharacters[0]);
+    this.dialogService.open(CharacterDetailDialogComponent, {
+      header: `Edit ${this.selectedCharacters[0].firstName}`,
+      width: '70%',
+      data: {
+        isAdding: false,
+        character: this.selectedCharacters[0],
+      },
+    });
   }
 
   onDelete() {

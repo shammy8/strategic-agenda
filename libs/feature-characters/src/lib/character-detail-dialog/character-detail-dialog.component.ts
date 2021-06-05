@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Character } from '../character.model';
 
 @Component({
   selector: 'strategic-agenda-character-detail-dialog',
@@ -8,6 +9,8 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
   styleUrls: ['./character-detail-dialog.component.scss'],
 })
 export class CharacterDetailDialogComponent implements OnInit {
+  originalCharacterValues!: Character;
+
   form = this.fb.group({
     firstName: ['', [Validators.required]],
     lastName: ['', [Validators.required]],
@@ -23,11 +26,13 @@ export class CharacterDetailDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.config.data);
+    this.originalCharacterValues = { ...this.config.data.character };
+    this.form.patchValue(this.config.data.character);
   }
 
-  onClear() {
+  onReset() {
     this.form.reset();
+    this.form.patchValue(this.originalCharacterValues);
   }
 
   onSubmit() {
