@@ -53,4 +53,12 @@ export class CharacterTableComponent implements OnInit {
   rowTrackBy(id: number, item: Character) {
     return item.id;
   }
+
+  onAdd() {
+    console.log('onAdd');
+  }
+
+  onEdit() {
+    console.log(this.selectedCharacters[0]);
+  }
 }

@@ -29,7 +29,13 @@
           [style]="{ minWidth: '200px' }"
           placeholder="Choose Columns"
         ></p-multiSelect>
-        <button pButton label="Edit"></button>
+        <button pButton label="Add" (click)="onAdd()"></button>
+        <button
+          pButton
+          label="Edit"
+          (click)="onEdit()"
+          [disabled]="selectedCharacters.length !== 1"
+        ></button>
         <span class="p-input-icon-left p-ml-auto">
           <i class="pi pi-search"></i>
           <input
@@ -43,8 +49,7 @@
             type="button"
             pButton
             icon="pi pi-file-o"
-            iconPos="left"
-            label="CSV"
+            class="p-button-outlined"
             (click)="dt.exportCSV()"
           ></button>
         </span>
