@@ -33,7 +33,7 @@
         <button
           pButton
           pRipple
-          label="New"
+          label="Add"
           icon="pi pi-plus"
           (click)="onAdd()"
           class="p-button-success p-mr-2"
@@ -54,6 +54,7 @@
           icon="pi pi-trash"
           class="p-button-danger p-mr-2"
           (click)="onDelete()"
+          [disabled]="selectedCharacters.length === 0"
         ></button>
         <button
           pButton

@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { DialogService } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
+import { CharacterDetailDialogComponent } from '../character-detail-dialog/character-detail-dialog.component';
 import { Character, Column } from '../character.model';
 import { CharacterService } from '../character.service';
 
@@ -7,6 +9,7 @@ import { CharacterService } from '../character.service';
   selector: 'strategic-agenda-character-table',
   templateUrl: './character-table.component.html',
   styleUrls: ['./character-table.component.scss'],
+  providers: [DialogService],
 })
 export class CharacterTableComponent implements OnInit {
   filter = '';
@@ -25,7 +28,10 @@ export class CharacterTableComponent implements OnInit {
 
   @ViewChild('dt') table!: Table;
 
-  constructor(private characterService: CharacterService) {}
+  constructor(
+    private characterService: CharacterService,
+    private dialogService: DialogService
+  ) {}
 
   ngOnInit(): void {
     this.characters = this.characterService.getAllCharacters();
@@ -55,7 +61,11 @@ export class CharacterTableComponent implements OnInit {
   }
 
   onAdd() {
-    console.log('onAdd');
+    this.dialogService.open(CharacterDetailDialogComponent, {
+      header: 'Add',
+      width: '70%',
+      data: 'hello',
+    });
   }
 
   onEdit() {
