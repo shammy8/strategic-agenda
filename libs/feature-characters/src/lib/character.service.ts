@@ -74,7 +74,8 @@ export class CharacterService {
   }
 
   addCharacter(newCharacter: Character) {
-    this.characters = [...this.characters, newCharacter];
+    const uid = Math.floor(Math.random() * 1000) + 7;
+    this.characters = [...this.characters, { ...newCharacter, id: uid }];
     this.charactersSubject$.next(this.characters);
   }
 
