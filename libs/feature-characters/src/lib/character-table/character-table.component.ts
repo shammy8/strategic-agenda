@@ -61,4 +61,8 @@ export class CharacterTableComponent implements OnInit {
   onEdit() {
     console.log(this.selectedCharacters[0]);
   }
+
+  onDelete() {
+    console.log(this.selectedCharacters[0]);
+  }
 }

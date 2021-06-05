@@ -28,13 +28,41 @@
           selectedItemsLabel="{0} columns selected"
           [style]="{ minWidth: '200px' }"
           placeholder="Choose Columns"
+          class="p-mr-2"
         ></p-multiSelect>
-        <button pButton label="Add" (click)="onAdd()"></button>
         <button
           pButton
+          pRipple
+          label="New"
+          icon="pi pi-plus"
+          (click)="onAdd()"
+          class="p-button-success p-mr-2"
+        ></button>
+        <button
+          pButton
+          pRipple
           label="Edit"
           (click)="onEdit()"
+          icon="pi pi-pencil"
+          class="p-mr-2"
           [disabled]="selectedCharacters.length !== 1"
+        ></button>
+        <button
+          pButton
+          pRipple
+          label="Delete"
+          icon="pi pi-trash"
+          class="p-button-danger p-mr-2"
+          (click)="onDelete()"
+        ></button>
+        <button
+          pButton
+          pRipple
+          label="Export"
+          icon="pi pi-upload"
+          class="p-button-help"
+          class="p-mr-2"
+          (click)="dt.exportCSV()"
         ></button>
         <span class="p-input-icon-left p-ml-auto">
           <i class="pi pi-search"></i>
@@ -45,13 +73,6 @@
             (ngModelChange)="filterGlobal($event)"
             placeholder="Search keyword"
           />
-          <button
-            type="button"
-            pButton
-            icon="pi pi-file-o"
-            class="p-button-outlined"
-            (click)="dt.exportCSV()"
-          ></button>
         </span>
       </div>
     </ng-template>
