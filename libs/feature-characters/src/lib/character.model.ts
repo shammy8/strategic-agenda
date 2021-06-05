@@ -10,4 +10,5 @@ export interface Character {
 export interface Column {
   field: string;
   header: string;
+  width?: string; // pass in 10px, 3rem etc
 }

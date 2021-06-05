@@ -52,7 +52,7 @@
       <th style="width: 2.25em">
         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
       </th>
-      <th pResizableColumn pSortableColumn="id">
+      <th pResizableColumn pSortableColumn="id" style="width: 5rem">
         ID
         <p-sortIcon field="id"></p-sortIcon>
       </th>
@@ -61,6 +61,7 @@
         [pSortableColumn]="col.field"
         pResizableColumn
         pReorderableColumn
+        [ngStyle]="{ width: col.width }"
       >
         {{ col.header }}
         <p-sortIcon [field]="col.field"></p-sortIcon>
