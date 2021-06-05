@@ -52,7 +52,12 @@
               "apps/translation-projex/src/favicon.ico",
               "apps/translation-projex/src/assets"
             ],
-            "styles": ["apps/translation-projex/src/styles.scss"],
+            "styles": [
+              "apps/translation-projex/src/styles.scss",
+              "node_modules/primeng/resources/themes/vela-orange/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css"
+            ],
             "scripts": []
           },
           "configurations": {
