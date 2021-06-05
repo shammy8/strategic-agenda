@@ -11,12 +11,13 @@ import { Table } from 'primeng/table';
 import { CharacterDetailDialogComponent } from '../character-detail-dialog/character-detail-dialog.component';
 import { Character, Column } from '../character.model';
 import { CharacterService } from '../character.service';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'strategic-agenda-character-table',
   templateUrl: './character-table.component.html',
   styleUrls: ['./character-table.component.scss'],
-  providers: [DialogService],
+  providers: [DialogService, ConfirmationService],
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class CharacterTableComponent implements OnInit, OnDestroy {
@@ -44,7 +45,8 @@ export class CharacterTableComponent implements OnInit, OnDestroy {
 
   constructor(
     private characterService: CharacterService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
@@ -100,7 +102,12 @@ export class CharacterTableComponent implements OnInit, OnDestroy {
   }
 
   onDelete() {
-    this.characterService.deleteCharacter(this.selectedCharacters);
+    this.confirmationService.confirm({
+      message: `Are you sure you want to delete the selected ${this.selectedCharacters.length} character(s)?`,
+      accept: () => {
+        this.characterService.deleteCharacter(this.selectedCharacters);
+      },
+    });
   }
 
   ngOnDestroy() {

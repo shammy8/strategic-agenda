@@ -12,6 +12,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { CardModule } from 'primeng/card';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { CharacterTableComponent } from './character-table/character-table.component';
 import { CharacterDetailDialogComponent } from './character-detail-dialog/character-detail-dialog.component';
@@ -34,6 +35,7 @@ import { CharacterDetailDialogComponent } from './character-detail-dialog/charac
     CardModule,
     InputTextareaModule,
     DynamicDialogModule,
+    ConfirmDialogModule,
   ],
   declarations: [CharacterTableComponent, CharacterDetailDialogComponent],
   exports: [CharacterTableComponent],
