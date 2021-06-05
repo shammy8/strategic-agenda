@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
@@ -11,6 +17,7 @@ import { CharacterService } from '../character.service';
   templateUrl: './character-table.component.html',
   styleUrls: ['./character-table.component.scss'],
   providers: [DialogService],
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class CharacterTableComponent implements OnInit, OnDestroy {
   filter = '';

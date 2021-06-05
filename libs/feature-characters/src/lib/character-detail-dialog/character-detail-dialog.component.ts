@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Character } from '../character.model';
@@ -7,6 +7,7 @@ import { Character } from '../character.model';
   selector: 'strategic-agenda-character-detail-dialog',
   templateUrl: './character-detail-dialog.component.html',
   styleUrls: ['./character-detail-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class CharacterDetailDialogComponent implements OnInit {
   originalCharacterValues!: Character;
