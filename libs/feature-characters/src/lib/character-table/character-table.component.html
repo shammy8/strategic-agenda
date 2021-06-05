@@ -1,93 +1,96 @@
-<p-table
-  #dt
-  [value]="characters"
-  [columns]="selectedColumns"
-  sortMode="multiple"
-  [globalFilterFields]="[
-    'id',
-    'firstName',
-    'lastName',
-    'age',
-    'email',
-    'quote'
-  ]"
-  selectionMode="multiple"
-  [(selection)]="selectedCharacters"
-  [resizableColumns]="true"
-  [reorderableColumns]="true"
->
-  <ng-template pTemplate="caption">
-    <div class="p-d-flex">
-      <p-multiSelect
-        [options]="allColumns"
-        [(ngModel)]="selectedColumns"
-        optionLabel="header"
-        selectedItemsLabel="{0} columns selected"
-        [style]="{ minWidth: '200px' }"
-        placeholder="Choose Columns"
-      ></p-multiSelect>
-      <span class="p-input-icon-left p-ml-auto">
-        <i class="pi pi-search"></i>
-        <input
-          pInputText
-          type="text"
-          [(ngModel)]="filter"
-          (ngModelChange)="filterGlobal($event)"
-          placeholder="Search keyword"
-        />
-        <button
-          type="button"
-          pButton
-          icon="pi pi-file-o"
-          iconPos="left"
-          label="CSV"
-          (click)="dt.exportCSV()"
-        ></button>
-      </span>
-    </div>
-  </ng-template>
-
-  <ng-template pTemplate="header" let-columns>
-    <tr>
-      <th style="width: 2.25em">
-        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-      </th>
-      <th pResizableColumn pSortableColumn="id" style="width: 5rem">
-        ID
-        <p-sortIcon field="id"></p-sortIcon>
-      </th>
-      <th
-        *ngFor="let col of columns"
-        [pSortableColumn]="col.field"
-        pResizableColumn
-        pReorderableColumn
-        [ngStyle]="{ width: col.width }"
-      >
-        {{ col.header }}
-        <p-sortIcon [field]="col.field"></p-sortIcon>
-      </th>
-    </tr>
-  </ng-template>
-
-  <ng-template
-    pTemplate="body"
-    let-character
-    let-columns="columns"
-    let-rowIndex="rowIndex"
+<p-card>
+  <p-table
+    #dt
+    [value]="characters"
+    [columns]="selectedColumns"
+    sortMode="multiple"
+    [globalFilterFields]="[
+      'id',
+      'firstName',
+      'lastName',
+      'age',
+      'email',
+      'quote'
+    ]"
+    selectionMode="multiple"
+    [(selection)]="selectedCharacters"
+    [resizableColumns]="true"
+    [reorderableColumns]="true"
+    dataKey="id"
   >
-    <tr [pSelectableRow]="character" [pSelectableRowIndex]="rowIndex">
-      <td>
-        <p-tableCheckbox [value]="character"></p-tableCheckbox>
-      </td>
-      <td>{{ character.id }}</td>
-      <td *ngFor="let col of columns">
-        <span *ngIf="col.field !== 'quote'">
-          {{ character[col.field] }}
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex">
+        <p-multiSelect
+          [options]="allColumns"
+          [(ngModel)]="selectedColumns"
+          optionLabel="header"
+          selectedItemsLabel="{0} columns selected"
+          [style]="{ minWidth: '200px' }"
+          placeholder="Choose Columns"
+        ></p-multiSelect>
+        <span class="p-input-icon-left p-ml-auto">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            [(ngModel)]="filter"
+            (ngModelChange)="filterGlobal($event)"
+            placeholder="Search keyword"
+          />
+          <button
+            type="button"
+            pButton
+            icon="pi pi-file-o"
+            iconPos="left"
+            label="CSV"
+            (click)="dt.exportCSV()"
+          ></button>
         </span>
-        <span *ngIf="col.field === 'quote'" [pTooltip]="character[col.field]">
-          {{ character[col.field] }}
-        </span>
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th style="width: 2.25em">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pResizableColumn pSortableColumn="id" style="width: 5rem">
+          ID
+          <p-sortIcon field="id"></p-sortIcon>
+        </th>
+        <th
+          *ngFor="let col of columns"
+          [pSortableColumn]="col.field"
+          pResizableColumn
+          pReorderableColumn
+          [ngStyle]="{ width: col.width }"
+        >
+          {{ col.header }}
+          <p-sortIcon [field]="col.field"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template
+      pTemplate="body"
+      let-character
+      let-columns="columns"
+      let-rowIndex="rowIndex"
+    >
+      <tr [pSelectableRow]="character" [pSelectableRowIndex]="rowIndex">
+        <td>
+          <p-tableCheckbox [value]="character"></p-tableCheckbox>
+        </td>
+        <td>{{ character.id }}</td>
+        <td *ngFor="let col of columns">
+          <span *ngIf="col.field !== 'quote'">
+            {{ character[col.field] }}
+          </span>
+          <span *ngIf="col.field === 'quote'" [pTooltip]="character[col.field]">
+            {{ character[col.field] }}
+          </span>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>
