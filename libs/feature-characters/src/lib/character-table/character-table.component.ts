@@ -46,4 +46,11 @@ export class CharacterTableComponent implements OnInit {
   set selectedColumns(val: Column[]) {
     this._selectedColumns = this.allColumns.filter((col) => val.includes(col));
   }
+
+  /**
+   * For better performance
+   */
+  rowTrackBy(id: number, item: Character) {
+    return item.id;
+  }
 }
