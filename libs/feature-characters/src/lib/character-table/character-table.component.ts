@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
 import { CharacterDetailDialogComponent } from '../character-detail-dialog/character-detail-dialog.component';
@@ -11,7 +12,7 @@ import { CharacterService } from '../character.service';
   styleUrls: ['./character-table.component.scss'],
   providers: [DialogService],
 })
-export class CharacterTableComponent implements OnInit {
+export class CharacterTableComponent implements OnInit, OnDestroy {
   filter = '';
 
   characters: Character[] = [];
@@ -27,6 +28,9 @@ export class CharacterTableComponent implements OnInit {
   ];
 
   @ViewChild('dt') table!: Table;
+
+  addCharacterSub: Subscription | undefined;
+  editCharacterSub: Subscription | undefined;
 
   constructor(
     private characterService: CharacterService,
@@ -61,15 +65,18 @@ export class CharacterTableComponent implements OnInit {
   }
 
   onAdd() {
-    this.dialogService.open(CharacterDetailDialogComponent, {
+    const ref = this.dialogService.open(CharacterDetailDialogComponent, {
       header: 'Add new character',
       width: '70%',
       data: { isAdding: true },
     });
+    this.addCharacterSub = ref.onClose.subscribe((newCharacter) => {
+      this.characterService.addCharacter(newCharacter);
+    });
   }
 
   onEdit() {
-    this.dialogService.open(CharacterDetailDialogComponent, {
+    const ref = this.dialogService.open(CharacterDetailDialogComponent, {
       header: `Edit ${this.selectedCharacters[0].firstName}`,
       width: '70%',
       data: {
@@ -77,9 +84,17 @@ export class CharacterTableComponent implements OnInit {
         character: this.selectedCharacters[0],
       },
     });
+    this.editCharacterSub = ref.onClose.subscribe((editedCharacter) => {
+      this.characterService.updateCharacter(editedCharacter);
+    });
   }
 
   onDelete() {
     console.log(this.selectedCharacters[0]);
+  }
+
+  ngOnDestroy() {
+    this.addCharacterSub?.unsubscribe();
+    this.editCharacterSub?.unsubscribe();
   }
 }

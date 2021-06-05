@@ -12,6 +12,7 @@ export class CharacterDetailDialogComponent implements OnInit {
   originalCharacterValues!: Character;
 
   form = this.fb.group({
+    id: '',
     firstName: ['', [Validators.required]],
     lastName: ['', [Validators.required]],
     age: [null, [Validators.required]],
@@ -36,6 +37,6 @@ export class CharacterDetailDialogComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form.value);
+    this.ref.close(this.form.value);
   }
 }

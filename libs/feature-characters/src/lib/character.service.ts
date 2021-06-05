@@ -70,4 +70,17 @@ export class CharacterService {
   getAllCharacters(): Character[] {
     return this.characters;
   }
+
+  addCharacter(newCharacter: Character) {
+    this.characters = [...this.characters, newCharacter];
+  }
+
+  updateCharacter(editedCharacter: Character) {
+    this.characters = this.characters.map((character) => {
+      if (character.id === editedCharacter.id) {
+        return editedCharacter;
+      }
+      return character;
+    });
+  }
 }
