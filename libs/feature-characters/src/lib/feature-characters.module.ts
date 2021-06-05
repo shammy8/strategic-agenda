@@ -7,6 +7,7 @@ import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { TooltipModule } from 'primeng/tooltip';
 
 import { CharacterTableComponent } from './character-table/character-table.component';
 
@@ -22,6 +23,7 @@ import { CharacterTableComponent } from './character-table/character-table.compo
     InputTextModule,
     ButtonModule,
     MultiSelectModule,
+    TooltipModule,
   ],
   declarations: [CharacterTableComponent],
   exports: [CharacterTableComponent],

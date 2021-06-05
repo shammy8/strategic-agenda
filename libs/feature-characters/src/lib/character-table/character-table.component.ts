@@ -19,7 +19,7 @@ export class CharacterTableComponent implements OnInit {
     { field: 'firstName', header: 'First Name', width: '10rem' },
     { field: 'lastName', header: 'Last Name', width: '10rem' },
     { field: 'age', header: 'Age', width: '6rem' },
-    { field: 'email', header: 'Email' },
+    { field: 'email', header: 'Email', width: '18rem' },
     { field: 'quote', header: 'Quote' },
   ];
 
@@ -32,6 +32,10 @@ export class CharacterTableComponent implements OnInit {
     this.selectedColumns = this.allColumns;
   }
 
+  filterGlobal(value: string) {
+    this.table.filterGlobal(value, 'contains');
+  }
+
   get selectedColumns(): Column[] {
     return this._selectedColumns;
   }
@@ -41,9 +45,5 @@ export class CharacterTableComponent implements OnInit {
    */
   set selectedColumns(val: Column[]) {
     this._selectedColumns = this.allColumns.filter((col) => val.includes(col));
-  }
-
-  filterGlobal(value: string) {
-    this.table.filterGlobal(value, 'contains');
   }
 }
