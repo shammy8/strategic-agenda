@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
-import { Character } from '../character.model';
+import { Character, Column } from '../character.model';
 import { CharacterService } from '../character.service';
 
 @Component({
@@ -12,10 +12,10 @@ export class CharacterTableComponent implements OnInit {
   filter = '';
 
   characters: Character[] = [];
-
   selectedCharacters: Character[] = [];
 
-  cols = [
+  private _selectedColumns: Column[] = [];
+  allColumns = [
     { field: 'firstName', header: 'First Name' },
     { field: 'lastName', header: 'Last Name' },
     { field: 'age', header: 'Age' },
@@ -29,6 +29,18 @@ export class CharacterTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.characters = this.characterService.getAllCharacters();
+    this.selectedColumns = this.allColumns;
+  }
+
+  get selectedColumns(): Column[] {
+    return this._selectedColumns;
+  }
+
+  /**
+   * Change visible columns based on multiselect
+   */
+  set selectedColumns(val: Column[]) {
+    this._selectedColumns = this.allColumns.filter((col) => val.includes(col));
   }
 
   filterGlobal(value: string) {

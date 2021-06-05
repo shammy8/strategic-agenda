@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { SharedModule } from 'primeng/api';
 import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 import { CharacterTableComponent } from './character-table/character-table.component';
-import { InputTextModule } from 'primeng/inputtext';
-import { FormsModule } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { ButtonModule } from 'primeng/button';
     TableModule,
     InputTextModule,
     ButtonModule,
+    MultiSelectModule,
   ],
   declarations: [CharacterTableComponent],
   exports: [CharacterTableComponent],

@@ -6,3 +6,8 @@ export interface Character {
   quote: string;
   age: number;
 }
+
+export interface Column {
+  field: string;
+  header: string;
+}

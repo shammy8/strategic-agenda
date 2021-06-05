@@ -1,9 +1,16 @@
 <p-table
   #dt
   [value]="characters"
-  [columns]="cols"
+  [columns]="selectedColumns"
   sortMode="multiple"
-  [globalFilterFields]="['firstName', 'lastName', 'age', 'email', 'quote']"
+  [globalFilterFields]="[
+    'id',
+    'firstName',
+    'lastName',
+    'age',
+    'email',
+    'quote'
+  ]"
   selectionMode="multiple"
   [(selection)]="selectedCharacters"
   [resizableColumns]="true"
@@ -11,14 +18,14 @@
 >
   <ng-template pTemplate="caption">
     <div class="p-d-flex">
-      <button
-        type="button"
-        pButton
-        icon="pi pi-file-o"
-        iconPos="left"
-        label="CSV"
-        (click)="dt.exportCSV()"
-      ></button>
+      <p-multiSelect
+        [options]="allColumns"
+        [(ngModel)]="selectedColumns"
+        optionLabel="header"
+        selectedItemsLabel="{0} columns selected"
+        [style]="{ minWidth: '200px' }"
+        placeholder="Choose Columns"
+      ></p-multiSelect>
       <span class="p-input-icon-left p-ml-auto">
         <i class="pi pi-search"></i>
         <input
@@ -28,6 +35,14 @@
           (ngModelChange)="filterGlobal($event)"
           placeholder="Search keyword"
         />
+        <button
+          type="button"
+          pButton
+          icon="pi pi-file-o"
+          iconPos="left"
+          label="CSV"
+          (click)="dt.exportCSV()"
+        ></button>
       </span>
     </div>
   </ng-template>
@@ -37,6 +52,7 @@
       <th style="width: 2.25em">
         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
       </th>
+      <th>ID</th>
       <th
         *ngFor="let col of columns"
         [pSortableColumn]="col.field"
@@ -56,6 +72,7 @@
     let-rowIndex="rowIndex"
   >
     <tr [pSelectableRow]="character" [pSelectableRowIndex]="rowIndex">
+      <td>{{ character.id }}</td>
       <td>
         <p-tableCheckbox [value]="character"></p-tableCheckbox>
       </td>
