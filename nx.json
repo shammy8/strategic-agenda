@@ -25,6 +25,9 @@
     "translation-projex-e2e": {
       "tags": [],
       "implicitDependencies": ["translation-projex"]
+    },
+    "feature-characters": {
+      "tags": ["feature"]
     }
   }
 }

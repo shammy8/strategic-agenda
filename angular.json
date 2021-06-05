@@ -155,6 +155,31 @@
           }
         }
       }
+    },
+    "feature-characters": {
+      "projectType": "library",
+      "root": "libs/feature-characters",
+      "sourceRoot": "libs/feature-characters/src",
+      "prefix": "strategic-agenda",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/feature-characters"],
+          "options": {
+            "jestConfig": "libs/feature-characters/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/feature-characters/src/**/*.ts",
+              "libs/feature-characters/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }
