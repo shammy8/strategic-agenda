@@ -38,6 +38,14 @@ export class CharacterDetailDialogComponent implements OnInit {
   }
 
   onSubmit() {
-    this.ref.close(this.form.value);
+    this.ref.close({
+      character: this.form.value,
+      submitted: true,
+    } as CharacterDialogResponse);
   }
+}
+
+export interface CharacterDialogResponse {
+  character?: Character;
+  submitted?: boolean;
 }

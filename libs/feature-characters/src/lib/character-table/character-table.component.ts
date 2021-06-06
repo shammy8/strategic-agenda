@@ -8,7 +8,10 @@ import {
 import { Observable, Subscription } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
-import { CharacterDetailDialogComponent } from '../character-detail-dialog/character-detail-dialog.component';
+import {
+  CharacterDetailDialogComponent,
+  CharacterDialogResponse,
+} from '../character-detail-dialog/character-detail-dialog.component';
 import { Character, Column } from '../character.model';
 import { CharacterService } from '../character.service';
 import { ConfirmationService } from 'primeng/api';
@@ -82,9 +85,12 @@ export class CharacterTableComponent implements OnInit, OnDestroy {
       width: '70%',
       data: { isAdding: true },
     });
-    this.addCharacterSub = ref.onClose.subscribe((newCharacter) => {
-      this.characterService.addCharacter(newCharacter);
-    });
+    this.addCharacterSub = ref.onClose.subscribe(
+      (dialogResponse: CharacterDialogResponse) => {
+        if (!dialogResponse.submitted || !dialogResponse.character) return;
+        this.characterService.addCharacter(dialogResponse.character);
+      }
+    );
   }
 
   onEdit() {
@@ -96,9 +102,12 @@ export class CharacterTableComponent implements OnInit, OnDestroy {
         character: this.selectedCharacters[0],
       },
     });
-    this.editCharacterSub = ref.onClose.subscribe((editedCharacter) => {
-      this.characterService.updateCharacter(editedCharacter);
-    });
+    this.editCharacterSub = ref.onClose.subscribe(
+      (dialogResponse: CharacterDialogResponse) => {
+        if (!dialogResponse.submitted || !dialogResponse.character) return;
+        this.characterService.updateCharacter(dialogResponse.character);
+      }
+    );
   }
 
   onDelete() {
