@@ -28,15 +28,15 @@
               [options]="allColumns"
               [(ngModel)]="selectedColumns"
               optionLabel="header"
-              [selectedItemsLabel]="t('characters.columnsSelected')"
+              [selectedItemsLabel]="t('columnsSelected')"
               [style]="{ minWidth: '200px' }"
-              [placeholder]="t('characters.chooseColumns')"
+              [placeholder]="t('chooseColumns')"
               class="p-mr-2"
             ></p-multiSelect>
             <button
               pButton
               pRipple
-              [label]="t('characters.add')"
+              [label]="t('add')"
               icon="pi pi-plus"
               (click)="onAdd()"
               class="p-button-success p-mr-2"
@@ -44,7 +44,7 @@
             <button
               pButton
               pRipple
-              [label]="t('characters.edit')"
+              [label]="t('edit')"
               (click)="onEdit()"
               icon="pi pi-pencil"
               class="p-mr-2"
@@ -53,7 +53,7 @@
             <button
               pButton
               pRipple
-              [label]="t('characters.delete')"
+              [label]="t('delete')"
               icon="pi pi-trash"
               class="p-button-danger p-mr-2"
               (click)="onDelete()"
@@ -62,7 +62,7 @@
             <button
               pButton
               pRipple
-              [label]="t('characters.export')"
+              [label]="t('export')"
               icon="pi pi-upload"
               class="p-button-help"
               class="p-mr-2"
@@ -75,7 +75,7 @@
                 type="text"
                 [(ngModel)]="filter"
                 (ngModelChange)="filterGlobal($event)"
-                [placeholder]="t('characters.filter')"
+                [placeholder]="t('filter')"
               />
             </span>
           </div>

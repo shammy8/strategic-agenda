@@ -1,7 +1,7 @@
 <ng-container *transloco="let t">
   <form class="p-fluid" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="p-field">
-      <label for="firstname">{{ t('characters.firstName') }}*</label>
+      <label for="firstname">{{ t('firstName') }}*</label>
       <input
         id="firstname"
         type="text"
@@ -10,15 +10,15 @@
       />
     </div>
     <div class="p-field">
-      <label for="lastname">{{ t('characters.lastName') }}*</label>
+      <label for="lastname">{{ t('lastName') }}*</label>
       <input id="lastname" type="text" pInputText formControlName="lastName" />
     </div>
     <div class="p-field">
-      <label for="email">{{ t('characters.email') }}* </label>
+      <label for="email">{{ t('email') }}* </label>
       <input id="email" type="email" pInputText formControlName="email" />
     </div>
     <div class="p-field">
-      <label for="age">{{ t('characters.age') }}*</label>
+      <label for="age">{{ t('age') }}*</label>
       <p-inputNumber
         id="age"
         type="text"
@@ -28,7 +28,7 @@
       ></p-inputNumber>
     </div>
     <div class="p-field">
-      <label for="quote">{{ t('characters.quote') }}</label>
+      <label for="quote">{{ t('quote') }}</label>
       <textarea
         pInputTextarea
         id="quote"
@@ -44,7 +44,7 @@
         class="p-mr-2"
         type="submit"
         icon="pi pi-check"
-        [label]="t('characters.submit')"
+        [label]="t('submit')"
         [disabled]="this.form.invalid"
       ></button>
       <button
@@ -52,7 +52,7 @@
         pButton
         type="button"
         icon="pi pi-times"
-        [label]="t('characters.reset')"
+        [label]="t('reset')"
         (click)="onReset()"
       ></button>
     </div>

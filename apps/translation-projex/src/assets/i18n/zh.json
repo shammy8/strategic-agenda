@@ -1,3 +1,18 @@
 {
-  "search": "搜尋"
+  "search": "搜尋",
+  "chooseColumns": "選擇欄",
+  "columnsSelected": "已選{0}欄",
+  "add": "增加",
+  "edit": "更改",
+  "delete": "刪除",
+  "export": "導出",
+  "filter": "篩選",
+  "firstName": "名字",
+  "lastName": "姓名",
+  "email": "電郵",
+  "age": "年齡",
+  "quote": "金句",
+  "submit": "遞交",
+  "reset": "重設",
+  "deleteConfirmationMessage": "確認刪除已選列？"
 }

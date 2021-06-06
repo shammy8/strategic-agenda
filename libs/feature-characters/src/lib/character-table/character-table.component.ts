@@ -56,12 +56,6 @@ export class CharacterTableComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.selectedColumns = this.allColumns;
-    // this.translocoService
-    //   .selectTranslate('characters.add', {}, { scope: 'characters' })
-    //   .subscribe(console.log);
-    // console.log(
-    //   this.translocoService.translate('characters.add', { scope: 'characters' })
-    // );
   }
 
   filterGlobal(value: string) {
@@ -131,7 +125,9 @@ export class CharacterTableComponent implements OnInit, OnDestroy {
 
   onDelete() {
     this.confirmationService.confirm({
-      message: `Are you sure you want to delete the selected ${this.selectedCharacters.length} character(s)?`,
+      message: this.translocoService.translate('deleteConfirmationMessage', {
+        length: this.selectedCharacters.length,
+      }),
       accept: () => {
         this.characterService.deleteCharacter(this.selectedCharacters);
         this.selectedCharacters = [];
