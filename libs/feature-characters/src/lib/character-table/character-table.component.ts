@@ -14,13 +14,13 @@ import {
 } from '../character-detail-dialog/character-detail-dialog.component';
 import { Character, Column } from '../character.model';
 import { CharacterService } from '../character.service';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'strategic-agenda-character-table',
   templateUrl: './character-table.component.html',
   styleUrls: ['./character-table.component.scss'],
-  providers: [DialogService, ConfirmationService],
+  providers: [DialogService, ConfirmationService, MessageService],
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class CharacterTableComponent implements OnInit, OnDestroy {
@@ -48,7 +48,8 @@ export class CharacterTableComponent implements OnInit, OnDestroy {
   constructor(
     private characterService: CharacterService,
     private dialogService: DialogService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -88,6 +89,11 @@ export class CharacterTableComponent implements OnInit, OnDestroy {
         if (!dialogResponse.submitted || !dialogResponse.character) return;
         this.characterService.addCharacter(dialogResponse.character);
         this.selectedCharacters = [];
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Added successfully',
+          life: 5000,
+        });
       }
     );
   }
@@ -106,6 +112,11 @@ export class CharacterTableComponent implements OnInit, OnDestroy {
         if (!dialogResponse.submitted || !dialogResponse.character) return;
         this.characterService.updateCharacter(dialogResponse.character);
         this.selectedCharacters = [];
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Edited successfully',
+          life: 5000,
+        });
       }
     );
   }
@@ -116,6 +127,11 @@ export class CharacterTableComponent implements OnInit, OnDestroy {
       accept: () => {
         this.characterService.deleteCharacter(this.selectedCharacters);
         this.selectedCharacters = [];
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Deleted successfully',
+          life: 5000,
+        });
       },
     });
   }

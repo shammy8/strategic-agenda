@@ -13,6 +13,7 @@ import { CardModule } from 'primeng/card';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
 
 import { CharacterTableComponent } from './character-table/character-table.component';
 import { CharacterDetailDialogComponent } from './character-detail-dialog/character-detail-dialog.component';
@@ -36,6 +37,7 @@ import { CharacterDetailDialogComponent } from './character-detail-dialog/charac
     InputTextareaModule,
     DynamicDialogModule,
     ConfirmDialogModule,
+    ToastModule,
   ],
   declarations: [CharacterTableComponent, CharacterDetailDialogComponent],
   exports: [CharacterTableComponent],
