@@ -10,15 +10,18 @@ import { MenuItem } from 'primeng/api';
 export class AppComponent implements OnInit {
   items: MenuItem[] = [
     {
+      id: 'language-button',
       label: 'Lang',
       items: [
         {
+          id: 'english-button',
           label: 'en',
           command: (e) => {
             this.translocoService.setActiveLang(e.item.label);
           },
         },
         {
+          id: 'chinese-button',
           label: 'zh',
           command: (e) => {
             this.translocoService.setActiveLang(e.item.label);

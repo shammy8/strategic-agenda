@@ -7,15 +7,28 @@
         type="text"
         pInputText
         formControlName="firstName"
+        data-cy="first-name-input"
       />
     </div>
     <div class="p-field">
       <label for="lastname">{{ t('lastName') }}*</label>
-      <input id="lastname" type="text" pInputText formControlName="lastName" />
+      <input
+        id="lastname"
+        type="text"
+        pInputText
+        formControlName="lastName"
+        data-cy="last-name-input"
+      />
     </div>
     <div class="p-field">
       <label for="email">{{ t('email') }}* </label>
-      <input id="email" type="email" pInputText formControlName="email" />
+      <input
+        id="email"
+        type="email"
+        pInputText
+        formControlName="email"
+        data-cy="email-input"
+      />
     </div>
     <div class="p-field">
       <label for="age">{{ t('age') }}*</label>
@@ -25,6 +38,7 @@
         pInputText
         formControlName="age"
         [min]="0"
+        data-cy="age-input"
       ></p-inputNumber>
     </div>
     <div class="p-field">
@@ -36,6 +50,7 @@
         pInputText
         formControlName="quote"
         [rows]="2"
+        data-cy="quote-input"
       ></textarea>
     </div>
     <div class="p-d-flex p-flex-row-reverse">
@@ -46,6 +61,7 @@
         icon="pi pi-check"
         [label]="t('submit')"
         [disabled]="this.form.invalid"
+        data-cy="submit-button"
       ></button>
       <button
         class="p-button-danger p-mr-2"
@@ -54,6 +70,7 @@
         icon="pi pi-times"
         [label]="t('reset')"
         (click)="onReset()"
+        data-cy="reset-button"
       ></button>
     </div>
   </form>

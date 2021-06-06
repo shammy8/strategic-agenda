@@ -32,6 +32,7 @@
               [style]="{ minWidth: '200px' }"
               [placeholder]="t('chooseColumns')"
               class="p-mr-2"
+              data-cy="columnSelector"
             ></p-multiSelect>
             <button
               pButton
@@ -40,6 +41,7 @@
               icon="pi pi-plus"
               (click)="onAdd()"
               class="p-button-success p-mr-2"
+              data-cy="add-button"
             ></button>
             <button
               pButton
@@ -48,6 +50,7 @@
               (click)="onEdit()"
               icon="pi pi-pencil"
               class="p-mr-2"
+              data-cy="edit-button"
               [disabled]="selectedCharacters.length !== 1"
             ></button>
             <button
@@ -57,6 +60,7 @@
               icon="pi pi-trash"
               class="p-button-danger p-mr-2"
               (click)="onDelete()"
+              data-cy="delete-button"
               [disabled]="selectedCharacters.length === 0"
             ></button>
             <button
@@ -64,8 +68,8 @@
               pRipple
               [label]="t('export')"
               icon="pi pi-upload"
-              class="p-button-help"
-              class="p-mr-2"
+              class="p-mr-2 p-button-help"
+              data-cy="export-button"
               (click)="dt.exportCSV()"
             ></button>
             <span class="p-input-icon-left p-ml-auto">
@@ -76,6 +80,7 @@
                 [(ngModel)]="filter"
                 (ngModelChange)="filterGlobal($event)"
                 [placeholder]="t('filter')"
+                data-cy="filter-input"
               />
             </span>
           </div>
