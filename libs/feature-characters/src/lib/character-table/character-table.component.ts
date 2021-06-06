@@ -88,7 +88,7 @@ export class CharacterTableComponent implements OnInit, OnDestroy {
     });
     this.addCharacterSub = ref.onClose.subscribe(
       (dialogResponse: CharacterDialogResponse) => {
-        if (!dialogResponse.submitted || !dialogResponse.character) return;
+        if (!dialogResponse?.submitted || !dialogResponse.character) return;
         this.characterService.addCharacter(dialogResponse.character);
         this.selectedCharacters = [];
         this.messageService.add({
@@ -111,7 +111,7 @@ export class CharacterTableComponent implements OnInit, OnDestroy {
     });
     this.editCharacterSub = ref.onClose.subscribe(
       (dialogResponse: CharacterDialogResponse) => {
-        if (!dialogResponse.submitted || !dialogResponse.character) return;
+        if (!dialogResponse?.submitted || !dialogResponse.character) return;
         this.characterService.updateCharacter(dialogResponse.character);
         this.selectedCharacters = [];
         this.messageService.add({
