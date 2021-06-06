@@ -4,6 +4,12 @@
 //   max-width: 600px;
 //   margin: 50px auto;
 // }
+:host ::ng-deep .menubar {
+  border-radius: 0;
+  min-width: 60rem;
+  border-left: none;
+  border-right: none;
+}
 
 h2 {
   margin-top: 10px;
@@ -22,6 +28,7 @@ pre {
 }
 
 .center {
-  max-width: 95%;
-  margin: 15px auto;
+  width: 95%;
+  min-width: 60rem;
+  margin: 1rem auto;
 }
