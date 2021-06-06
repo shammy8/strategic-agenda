@@ -69,10 +69,6 @@ export class CharacterService {
   private charactersSubject$ = new BehaviorSubject(this.characters);
   charactersObservable$ = this.charactersSubject$.asObservable();
 
-  getAllCharacters(): Character[] {
-    return this.characters;
-  }
-
   addCharacter(newCharacter: Character) {
     const uid = Math.floor(Math.random() * 1000) + 7;
     this.characters = [...this.characters, { ...newCharacter, id: uid }];

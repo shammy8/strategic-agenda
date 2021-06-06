@@ -29,7 +29,6 @@ export class CharacterTableComponent implements OnInit, OnDestroy {
   characters$: Observable<Character[]> = this.characterService
     .charactersObservable$;
 
-  characters: Character[] = [];
   selectedCharacters: Character[] = [];
 
   private _selectedColumns: Column[] = [];
@@ -53,7 +52,6 @@ export class CharacterTableComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.characters = this.characterService.getAllCharacters();
     this.selectedColumns = this.allColumns;
   }
 
