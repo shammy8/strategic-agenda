@@ -87,6 +87,7 @@ export class CharacterTableComponent implements OnInit, OnDestroy {
       (dialogResponse: CharacterDialogResponse) => {
         if (!dialogResponse.submitted || !dialogResponse.character) return;
         this.characterService.addCharacter(dialogResponse.character);
+        this.selectedCharacters = [];
       }
     );
   }
@@ -104,6 +105,7 @@ export class CharacterTableComponent implements OnInit, OnDestroy {
       (dialogResponse: CharacterDialogResponse) => {
         if (!dialogResponse.submitted || !dialogResponse.character) return;
         this.characterService.updateCharacter(dialogResponse.character);
+        this.selectedCharacters = [];
       }
     );
   }
@@ -113,6 +115,7 @@ export class CharacterTableComponent implements OnInit, OnDestroy {
       message: `Are you sure you want to delete the selected ${this.selectedCharacters.length} character(s)?`,
       accept: () => {
         this.characterService.deleteCharacter(this.selectedCharacters);
+        this.selectedCharacters = [];
       },
     });
   }
