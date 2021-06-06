@@ -1,0 +1,16 @@
+{
+  "chooseColumns": "Choose Columns",
+  "columnsSelected": "{0} columns selected",
+  "add": "Add",
+  "edit": "Edit",
+  "delete": "Delete",
+  "export": "Export",
+  "filter": "Filter",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "email": "Email",
+  "age": "Age",
+  "quote": "Quote",
+  "submit": "Submit",
+  "reset": "Reset"
+}

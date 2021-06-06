@@ -1,138 +1,140 @@
-<p-card>
-  <ng-container *ngIf="characters$ | async as characters">
-    <!-- need this ng-container because [value] only takes any[] but async pipe might return null -->
-    <p-table
-      #dt
-      [value]="characters"
-      [columns]="selectedColumns"
-      sortMode="multiple"
-      [globalFilterFields]="[
-        'id',
-        'firstName',
-        'lastName',
-        'age',
-        'email',
-        'quote'
-      ]"
-      selectionMode="multiple"
-      [(selection)]="selectedCharacters"
-      [resizableColumns]="true"
-      [reorderableColumns]="true"
-      dataKey="id"
-      [rowTrackBy]="rowTrackBy"
-    >
-      <ng-template pTemplate="caption">
-        <div class="p-d-flex">
-          <p-multiSelect
-            [options]="allColumns"
-            [(ngModel)]="selectedColumns"
-            optionLabel="header"
-            selectedItemsLabel="{0} columns selected"
-            [style]="{ minWidth: '200px' }"
-            placeholder="Choose Columns"
-            class="p-mr-2"
-          ></p-multiSelect>
-          <button
-            pButton
-            pRipple
-            label="Add"
-            icon="pi pi-plus"
-            (click)="onAdd()"
-            class="p-button-success p-mr-2"
-          ></button>
-          <button
-            pButton
-            pRipple
-            label="Edit"
-            (click)="onEdit()"
-            icon="pi pi-pencil"
-            class="p-mr-2"
-            [disabled]="selectedCharacters.length !== 1"
-          ></button>
-          <button
-            pButton
-            pRipple
-            label="Delete"
-            icon="pi pi-trash"
-            class="p-button-danger p-mr-2"
-            (click)="onDelete()"
-            [disabled]="selectedCharacters.length === 0"
-          ></button>
-          <button
-            pButton
-            pRipple
-            label="Export"
-            icon="pi pi-upload"
-            class="p-button-help"
-            class="p-mr-2"
-            (click)="dt.exportCSV()"
-          ></button>
-          <span class="p-input-icon-left p-ml-auto">
-            <i class="pi pi-search"></i>
-            <input
-              pInputText
-              type="text"
-              [(ngModel)]="filter"
-              (ngModelChange)="filterGlobal($event)"
-              placeholder="Search keyword"
-            />
-          </span>
-        </div>
-      </ng-template>
-
-      <ng-template pTemplate="header" let-columns>
-        <tr>
-          <th style="width: 2.25em">
-            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-          </th>
-          <th pResizableColumn pSortableColumn="id" style="width: 6rem">
-            ID
-            <p-sortIcon field="id"></p-sortIcon>
-          </th>
-          <th
-            *ngFor="let col of columns"
-            [pSortableColumn]="col.field"
-            pResizableColumn
-            pReorderableColumn
-            [ngStyle]="{ width: col.width }"
-          >
-            {{ col.header }}
-            <p-sortIcon [field]="col.field"></p-sortIcon>
-          </th>
-        </tr>
-      </ng-template>
-
-      <ng-template
-        pTemplate="body"
-        let-character
-        let-columns="columns"
-        let-rowIndex="rowIndex"
+<ng-container *transloco="let t">
+  <p-card>
+    <ng-container *ngIf="characters$ | async as characters">
+      <!-- need this ng-container because [value] only takes any[] but async pipe might return null -->
+      <p-table
+        #dt
+        [value]="characters"
+        [columns]="selectedColumns"
+        sortMode="multiple"
+        [globalFilterFields]="[
+          'id',
+          'firstName',
+          'lastName',
+          'age',
+          'email',
+          'quote'
+        ]"
+        selectionMode="multiple"
+        [(selection)]="selectedCharacters"
+        [resizableColumns]="true"
+        [reorderableColumns]="true"
+        dataKey="id"
+        [rowTrackBy]="rowTrackBy"
       >
-        <tr [pSelectableRow]="character" [pSelectableRowIndex]="rowIndex">
-          <td>
-            <p-tableCheckbox [value]="character"></p-tableCheckbox>
-          </td>
-          <td>{{ character.id }}</td>
-          <td *ngFor="let col of columns">
-            <span *ngIf="col.field !== 'quote'">
-              {{ character[col.field] }}
+        <ng-template pTemplate="caption">
+          <div class="p-d-flex">
+            <p-multiSelect
+              [options]="allColumns"
+              [(ngModel)]="selectedColumns"
+              optionLabel="header"
+              [selectedItemsLabel]="t('characters.columnsSelected')"
+              [style]="{ minWidth: '200px' }"
+              [placeholder]="t('characters.chooseColumns')"
+              class="p-mr-2"
+            ></p-multiSelect>
+            <button
+              pButton
+              pRipple
+              [label]="t('characters.add')"
+              icon="pi pi-plus"
+              (click)="onAdd()"
+              class="p-button-success p-mr-2"
+            ></button>
+            <button
+              pButton
+              pRipple
+              [label]="t('characters.edit')"
+              (click)="onEdit()"
+              icon="pi pi-pencil"
+              class="p-mr-2"
+              [disabled]="selectedCharacters.length !== 1"
+            ></button>
+            <button
+              pButton
+              pRipple
+              [label]="t('characters.delete')"
+              icon="pi pi-trash"
+              class="p-button-danger p-mr-2"
+              (click)="onDelete()"
+              [disabled]="selectedCharacters.length === 0"
+            ></button>
+            <button
+              pButton
+              pRipple
+              [label]="t('characters.export')"
+              icon="pi pi-upload"
+              class="p-button-help"
+              class="p-mr-2"
+              (click)="dt.exportCSV()"
+            ></button>
+            <span class="p-input-icon-left p-ml-auto">
+              <i class="pi pi-search"></i>
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="filter"
+                (ngModelChange)="filterGlobal($event)"
+                [placeholder]="t('characters.filter')"
+              />
             </span>
-            <span
-              *ngIf="col.field === 'quote'"
-              [pTooltip]="character[col.field]"
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th style="width: 2.25em">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th pResizableColumn pSortableColumn="id" style="width: 6rem">
+              ID
+              <p-sortIcon field="id"></p-sortIcon>
+            </th>
+            <th
+              *ngFor="let col of columns"
+              [pSortableColumn]="col.field"
+              pResizableColumn
+              pReorderableColumn
+              [ngStyle]="{ width: col.width }"
             >
-              {{ character[col.field] }}
-            </span>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </ng-container>
-</p-card>
+              {{ col.header }}
+              <p-sortIcon [field]="col.field"></p-sortIcon>
+            </th>
+          </tr>
+        </ng-template>
 
-<p-confirmDialog
-  header="Delete"
-  icon="pi pi-exclamation-triangle"
-></p-confirmDialog>
+        <ng-template
+          pTemplate="body"
+          let-character
+          let-columns="columns"
+          let-rowIndex="rowIndex"
+        >
+          <tr [pSelectableRow]="character" [pSelectableRowIndex]="rowIndex">
+            <td>
+              <p-tableCheckbox [value]="character"></p-tableCheckbox>
+            </td>
+            <td>{{ character.id }}</td>
+            <td *ngFor="let col of columns">
+              <span *ngIf="col.field !== 'quote'">
+                {{ character[col.field] }}
+              </span>
+              <span
+                *ngIf="col.field === 'quote'"
+                [pTooltip]="character[col.field]"
+              >
+                {{ character[col.field] }}
+              </span>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </ng-container>
+  </p-card>
 
-<p-toast></p-toast>
+  <p-confirmDialog
+    header="Delete"
+    icon="pi pi-exclamation-triangle"
+  ></p-confirmDialog>
+
+  <p-toast></p-toast>
+</ng-container>

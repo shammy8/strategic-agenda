@@ -15,6 +15,7 @@ import {
 import { Character, Column } from '../character.model';
 import { CharacterService } from '../character.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'strategic-agenda-character-table',
@@ -49,11 +50,18 @@ export class CharacterTableComponent implements OnInit, OnDestroy {
     private characterService: CharacterService,
     private dialogService: DialogService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private translocoService: TranslocoService
   ) {}
 
   ngOnInit(): void {
     this.selectedColumns = this.allColumns;
+    // this.translocoService
+    //   .selectTranslate('characters.add', {}, { scope: 'characters' })
+    //   .subscribe(console.log);
+    // console.log(
+    //   this.translocoService.translate('characters.add', { scope: 'characters' })
+    // );
   }
 
   filterGlobal(value: string) {

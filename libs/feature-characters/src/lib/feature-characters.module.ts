@@ -14,7 +14,9 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
+import { TranslocoModule, TRANSLOCO_SCOPE } from '@ngneat/transloco';
 
+import { scopeLoader } from '../../../../scoped-translations';
 import { CharacterTableComponent } from './character-table/character-table.component';
 import { CharacterDetailDialogComponent } from './character-detail-dialog/character-detail-dialog.component';
 
@@ -38,8 +40,20 @@ import { CharacterDetailDialogComponent } from './character-detail-dialog/charac
     DynamicDialogModule,
     ConfirmDialogModule,
     ToastModule,
+    TranslocoModule,
   ],
   declarations: [CharacterTableComponent, CharacterDetailDialogComponent],
   exports: [CharacterTableComponent],
+  providers: [
+    {
+      provide: TRANSLOCO_SCOPE,
+      useValue: {
+        scope: 'characters',
+        loader: scopeLoader(
+          (lang: string, root: string) => import(`./${root}/${lang}.json`)
+        ),
+      },
+    },
+  ],
 })
 export class FeatureCharactersModule {}

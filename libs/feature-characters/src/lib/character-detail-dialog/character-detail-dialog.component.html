@@ -1,55 +1,60 @@
-<form class="p-fluid" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="p-field">
-    <label for="firstname">First Name*</label>
-    <input id="firstname" type="text" pInputText formControlName="firstName" />
-  </div>
-  <div class="p-field">
-    <label for="lastname">Last Name*</label>
-    <input id="lastname" type="text" pInputText formControlName="lastName" />
-  </div>
-  <div class="p-field">
-    <label for="email">Email*</label>
-    <input id="email" type="email" pInputText formControlName="email" />
-  </div>
-  <div class="p-field">
-    <label for="age">Age*</label>
-    <p-inputNumber
-      id="age"
-      type="text"
-      pInputText
-      formControlName="age"
-      [min]="0"
-    ></p-inputNumber>
-  </div>
-  <div class="p-field">
-    <label for="quote">Quote</label>
-    <textarea
-      pInputTextarea
-      id="quote"
-      type="text"
-      pInputText
-      formControlName="quote"
-      [rows]="2"
-    ></textarea>
-  </div>
-  <div class="p-d-flex p-flex-row-reverse">
-    <button
-      pButton
-      class="p-mr-2"
-      type="submit"
-      icon="pi pi-check"
-      label="Submit"
-      [disabled]="this.form.invalid"
-    ></button>
-    <button
-      class="p-button-danger p-mr-2"
-      pButton
-      type="button"
-      icon="pi pi-times"
-      label="Reset"
-      (click)="onReset()"
-    ></button>
-  </div>
-</form>
-
-<pre>{{ form.value | json }}</pre>
+<ng-container *transloco="let t">
+  <form class="p-fluid" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="p-field">
+      <label for="firstname">{{ t('characters.firstName') }}*</label>
+      <input
+        id="firstname"
+        type="text"
+        pInputText
+        formControlName="firstName"
+      />
+    </div>
+    <div class="p-field">
+      <label for="lastname">{{ t('characters.lastName') }}*</label>
+      <input id="lastname" type="text" pInputText formControlName="lastName" />
+    </div>
+    <div class="p-field">
+      <label for="email">{{ t('characters.email') }}* </label>
+      <input id="email" type="email" pInputText formControlName="email" />
+    </div>
+    <div class="p-field">
+      <label for="age">{{ t('characters.age') }}*</label>
+      <p-inputNumber
+        id="age"
+        type="text"
+        pInputText
+        formControlName="age"
+        [min]="0"
+      ></p-inputNumber>
+    </div>
+    <div class="p-field">
+      <label for="quote">{{ t('characters.quote') }}</label>
+      <textarea
+        pInputTextarea
+        id="quote"
+        type="text"
+        pInputText
+        formControlName="quote"
+        [rows]="2"
+      ></textarea>
+    </div>
+    <div class="p-d-flex p-flex-row-reverse">
+      <button
+        pButton
+        class="p-mr-2"
+        type="submit"
+        icon="pi pi-check"
+        [label]="t('characters.submit')"
+        [disabled]="this.form.invalid"
+      ></button>
+      <button
+        class="p-button-danger p-mr-2"
+        pButton
+        type="button"
+        icon="pi pi-times"
+        [label]="t('characters.reset')"
+        (click)="onReset()"
+      ></button>
+    </div>
+  </form>
+</ng-container>
