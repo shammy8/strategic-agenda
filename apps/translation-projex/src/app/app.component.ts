@@ -10,7 +10,7 @@ import { MenuItem } from 'primeng/api';
 export class AppComponent implements OnInit {
   items: MenuItem[] = [
     {
-      label: 'Language',
+      label: 'Lang',
       items: [
         {
           label: 'en',
