@@ -85,6 +85,7 @@ export class CharacterTableComponent implements OnInit, OnDestroy {
       header: 'Add new character',
       width: '70%',
       data: { isAdding: true },
+      style: { minWidth: '400px' },
     });
     this.addCharacterSub = ref.onClose.subscribe(
       (dialogResponse: CharacterDialogResponse) => {
