@@ -2,6 +2,8 @@
 
 This project was generated using [Nx](https://nx.dev), visit the [Nx Documentation](https://nx.dev/angular) to learn more.
 
+The live version is hosted on Firebase and can be found [here.](https://translation-projex-bbbb7.web.app/characters)
+
 The main Angular app is inside `apps/translation-projex`. But most of the code is lazily loaded from the feature-characters library under `libs/feature-characters`.
 
 Clone repository to your local PC and run `npm install`. Then run `nx serve` and navigate to http://localhost:4200/ for a dev server.
