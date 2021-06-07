@@ -1,12 +1,8 @@
-<ng-container *transloco="let t">
-  <p-menubar styleClass="menubar" [model]="items">
-    <ng-template pTemplate="start">
-      <h2 class="p-mr-2">
-        Translation<span style="color: brown">Projex</span>
-      </h2>
-    </ng-template>
-  </p-menubar>
-  <div class="center">
-    <router-outlet></router-outlet>
-  </div>
-</ng-container>
+<p-menubar styleClass="menubar" [model]="items">
+  <ng-template pTemplate="start">
+    <h2 class="p-mr-2">Translation<span style="color: brown">Projex</span></h2>
+  </ng-template>
+</p-menubar>
+<div class="center">
+  <router-outlet></router-outlet>
+</div>

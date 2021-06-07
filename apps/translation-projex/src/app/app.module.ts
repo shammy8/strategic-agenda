@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
-import { InputTextModule } from 'primeng/inputtext';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -33,7 +32,6 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     SharedModule,
     MenubarModule,
-    InputTextModule,
     HttpClientModule,
     TranslocoRootModule,
   ],
