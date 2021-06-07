@@ -7,6 +7,7 @@
   "delete": "刪除",
   "export": "導出",
   "filter": "篩選",
+  "totalCharacters": "總共 {{length}} 行",
   "firstName": "名字",
   "lastName": "姓名",
   "email": "電郵",

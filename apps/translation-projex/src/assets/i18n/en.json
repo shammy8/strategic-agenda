@@ -7,6 +7,7 @@
   "delete": "Delete",
   "export": "Export",
   "filter": "Filter",
+  "totalCharacters": "There are {{length}} characters in total",
   "firstName": "First Name",
   "lastName": "Last Name",
   "email": "Email",

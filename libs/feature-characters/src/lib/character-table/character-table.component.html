@@ -137,7 +137,7 @@
         </ng-template>
 
         <ng-template pTemplate="paginatorleft">
-          There are {{ characters?.length }} characters in total
+          {{ t('totalCharacters', { length: characters.length }) }}
         </ng-template>
       </p-table>
     </ng-container>
