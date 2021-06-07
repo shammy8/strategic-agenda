@@ -5,6 +5,10 @@ describe('detail screen', () => {
   });
 
   it('add character', () => {
+    cy.get('.p-paginator-left-content').should(
+      'contain',
+      'There are 11 characters in total'
+    );
     cy.get('[data-cy=add-button]').click();
     cy.get('[data-cy=first-name-input]').type('Allan');
     cy.get('[data-cy=last-name-input]').type('Sham');
@@ -14,8 +18,13 @@ describe('detail screen', () => {
     cy.get('[data-cy=quote-input]').type('Hi Fola');
     cy.get('[data-cy=submit-button]').should('be.enabled');
     cy.get('[data-cy=submit-button]').click();
+    cy.get('.p-paginator-last').click(); // go to the last page of the table
     cy.contains('Allan');
     cy.contains('allansham@hotmail.com');
+    cy.get('.p-paginator-left-content').should(
+      'contain',
+      'There are 12 characters in total'
+    );
     // cy.get('[data-cy=reset-button]');
   });
 
@@ -32,13 +41,23 @@ describe('detail screen', () => {
     cy.contains('Troy Donald Glover');
   });
 
-  it('delete characters', () => {
-    cy.get('tbody > tr').should('have.length', 7);
+  it.only('delete characters', () => {
+    cy.get('.p-paginator-left-content').should(
+      'contain',
+      'There are 11 characters in total'
+    );
+    cy.get('.p-paginator-last').click(); // go to the last page of the table
+    cy.get('tbody > tr').should('have.length', 1);
+    cy.get('.p-paginator-first').click(); // go to the first page of the table
     cy.contains('Pierce').click();
     cy.contains('Shirley').click();
     cy.get('[data-cy=delete-button]').click();
     cy.contains('delete the selected 2 character(s)?');
     cy.get('.p-confirm-dialog-accept').click();
-    cy.get('tbody > tr').should('have.length', 5);
+    cy.get('tbody > tr').should('have.length', 9);
+    cy.get('.p-paginator-left-content').should(
+      'contain',
+      'There are 9 characters in total'
+    );
   });
 });
