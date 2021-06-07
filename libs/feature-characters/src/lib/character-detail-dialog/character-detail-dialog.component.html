@@ -21,7 +21,12 @@
       />
     </div>
     <div class="p-field">
-      <label for="email">{{ t('email') }}* </label>
+      <label for="email">{{ t('email') }}* </label> &nbsp;
+      <small
+        class="p-error"
+        *ngIf="this.emailField?.invalid && this.emailField?.touched"
+        >Please enter a valid email address</small
+      >
       <input
         id="email"
         type="email"

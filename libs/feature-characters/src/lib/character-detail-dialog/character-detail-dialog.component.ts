@@ -21,6 +21,10 @@ export class CharacterDetailDialogComponent implements OnInit {
     quote: '',
   });
 
+  get emailField() {
+    return this.form.get('email');
+  }
+
   constructor(
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
