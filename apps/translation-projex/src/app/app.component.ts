@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
 import { MenuItem } from 'primeng/api';
 
@@ -6,8 +6,9 @@ import { MenuItem } from 'primeng/api';
   selector: 'strategic-agenda-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   items: MenuItem[] = [
     {
       id: 'language-button',
@@ -15,16 +16,16 @@ export class AppComponent implements OnInit {
       items: [
         {
           id: 'english-button',
-          label: 'en',
-          command: (e) => {
-            this.translocoService.setActiveLang(e.item.label);
+          label: 'English',
+          command: () => {
+            this.translocoService.setActiveLang('en');
           },
         },
         {
           id: 'chinese-button',
-          label: 'zh',
-          command: (e) => {
-            this.translocoService.setActiveLang(e.item.label);
+          label: '繁體',
+          command: () => {
+            this.translocoService.setActiveLang('zh');
           },
         },
       ],
@@ -32,6 +33,4 @@ export class AppComponent implements OnInit {
   ];
 
   constructor(private translocoService: TranslocoService) {}
-
-  ngOnInit() {}
 }
