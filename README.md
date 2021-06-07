@@ -4,15 +4,16 @@ This project was generated using [Nx](https://nx.dev), visit the [Nx Documentati
 
 The main Angular app is inside `apps/translation-projex`. But most of the code is lazily loaded from the feature-characters library under `libs/feature-characters`.
 
-After cloning to your local PC and running `npm install`, run `nx serve` for a dev server, navigate to http://localhost:4200/.
+Clone repository to your local PC and run `npm install`. Then run `nx serve` and navigate to http://localhost:4200/ for a dev server.
 
-I mainly used the PrimeNG table component and have implemented feature such as:
+I mainly used the [PrimeNG](https://www.primefaces.org/primeng/) table component and have implemented feature such as:
 
 - Reorderable columns
 - Columns selection
 - Row multi select
 - Global filtering
 - Sorting
+- Pagination
 - CSV export
 
 As specified, I have also implemented simple CRUD functionality.
