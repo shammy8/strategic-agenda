@@ -21,6 +21,9 @@
         [reorderableColumns]="true"
         dataKey="id"
         [rowTrackBy]="rowTrackBy"
+        [paginator]="true"
+        [rows]="10"
+        [rowsPerPageOptions]="[5, 10]"
       >
         <ng-template pTemplate="caption">
           <div class="p-d-flex">
