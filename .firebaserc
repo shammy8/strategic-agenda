@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "translation-projex-bbbb7": {
+      "hosting": {
+        "translation-projex": [
+          "translation-projex-bbbb7"
+        ]
+      }
+    }
+  }
+}
